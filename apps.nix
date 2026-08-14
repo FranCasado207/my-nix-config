@@ -21,6 +21,7 @@
         #Launchers
         heroic
         lutris
+        faugus-launcher
 
         #proton stuff
         protonup-qt
@@ -34,6 +35,12 @@
 
         #security
         bitwarden-desktop
+
+        btop-cuda
+
+        obsidian
+
+        tree
     ];
 
 
