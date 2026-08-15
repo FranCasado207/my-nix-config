@@ -6,6 +6,7 @@
     #Coding tools
     environment.systemPackages = with pkgs; [
         vscode
+        bruno
     ];
 
 }

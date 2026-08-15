@@ -15,6 +15,7 @@
       ./coding.nix
       ./docker.nix
       ./aliases.nix
+      ./tailscale.nix
     ];
 
   # Bootloader.
