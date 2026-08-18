@@ -8,14 +8,16 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ./hardware/nvidia.nix
-      ./environment-variables.nix
+      ./modules/core/hardware/nvidia.nix
+      ./modules/core/shell/environment-variables.nix
       ./apps.nix
       ./drives.nix
       ./coding.nix
       ./docker.nix
       ./aliases.nix
       ./tailscale.nix
+      ./emulation.nix
+      ./gaming.nix
     ];
 
   # Bootloader.
@@ -151,5 +153,19 @@
     extraArgs = [ "--autopower" ];
   };
 
+  #enable ld stuff
+  programs.nix-ld.enable = true;
+
+  #system.activationScripts.ldconfig-symlink = ''
+  #  mkdir -p /sbin
+  #  ln -sf /run/current-system/sw/bin/ldconfig /sbin/ldconfig
+  #'';
+
+  programs.nix-ld.libraries = with pkgs; [
+    libGL
+    libglvnd
+    glib
+    stdenv.cc.cc.lib
+  ];
 
 }

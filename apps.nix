@@ -4,29 +4,8 @@
     #flatpak
     services.flatpak.enable = true;
 
-
-    #gamemode
-    programs.gamemode.enable = true;
-
-
-    #Gaming
-    programs.steam = {
-        enable = true;
-        remotePlay.openFirewall = true;
-        dedicatedServer.openFirewall = true;
-    };
-
     #NixPkgs
     environment.systemPackages = with pkgs; [
-        #Launchers
-        heroic
-        lutris
-        faugus-launcher
-
-        #proton stuff
-        protonup-qt
-
-
         vesktop
         gparted
 
@@ -41,7 +20,30 @@
         obsidian
 
         tree
-    ];
 
+        qbittorrent
+
+        p7zip
+        file
+
+        libGL
+        libglvnd
+        localsend
+
+        mpv
+
+        #anime owo
+        ani-cli
+        (calibre.override {
+            unrarSupport = true;
+        })
+
+        ];
+
+    #Localsend ports
+    networking.firewall = {
+        allowedTCPPorts = [ 53317 ];
+        allowedUDPPorts = [ 53317 ];
+    };
 
 }

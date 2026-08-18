@@ -7,6 +7,9 @@
     environment.systemPackages = with pkgs; [
         vscode
         bruno
+        nil
+        cabextract
+        procps
     ];
 
 }
