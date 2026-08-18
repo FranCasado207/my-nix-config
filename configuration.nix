@@ -18,6 +18,7 @@
       ./tailscale.nix
       ./emulation.nix
       ./gaming.nix
+      ./modules/apps/vim/nixvim.nix
     ];
 
   # Bootloader.
