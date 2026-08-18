@@ -21,5 +21,24 @@
 
     # Rollback
     nrollback = "sudo nixos-rebuild switch --rollback";
+
+    upa = "update-all";
   };
+
+  environment.systemPackages = [
+    (pkgs.writeShellScriptBin "update-all" ''
+      set -e
+      echo "==> Updating flake inputs..."
+      cd /etc/nixos
+      sudo nix flake update
+
+      echo "==> Rebuilding system..."
+      sudo nixos-rebuild switch --flake /etc/nixos#nixos
+
+      echo "==> Updating flatpaks..."
+      flatpak update -y
+
+      echo "==> Done!"
+    '')
+  ];
 }
