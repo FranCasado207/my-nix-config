@@ -10,6 +10,8 @@
         nil
         cabextract
         procps
+
+        tmux
     ];
 
 }

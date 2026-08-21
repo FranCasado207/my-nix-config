@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 {
     #gamemode
     programs.gamemode.enable = true;
@@ -22,6 +22,11 @@
 
         #Celeste mod manager
         olympus
+
+        #god mode
+        openrct2
+
+        inputs.dusklight.packages.${pkgs.system}.default
     ];
 
 

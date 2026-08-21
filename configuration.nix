@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, inputs,  ... }:
 
 {
   imports =
@@ -21,12 +21,28 @@
       ./modules/apps/vim/nixvim.nix
     ];
 
+
+  #for app images
+  boot.supportedFilesystems = [ "fuse" ];
+
+
   # Bootloader.
-  boot.loader.systemd-boot.enable = true;
+  #boot.loader.systemd-boot.enable = true;
+  boot.loader.limine.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+
+  #nixpkgs.overlays = [
+  #  inputs.nix-cachyos-kernel.overlays.pinned
+  #];
 
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
+  #cachyos kernel
+  #boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest;
+  #cachyos cache
+  #nix.settings.substituters = [ "https://attic.xuyh0120.win/lantian" ];
+  #nix.settings.trusted-public-keys = [ "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc=" ];
+
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
@@ -119,6 +135,7 @@
   environment.systemPackages = with pkgs; [
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #  wget
+    fuse
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

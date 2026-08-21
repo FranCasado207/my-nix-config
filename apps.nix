@@ -38,6 +38,9 @@
             unrarSupport = true;
         })
 
+        wget
+        unzip
+
         ];
 
     #Localsend ports
